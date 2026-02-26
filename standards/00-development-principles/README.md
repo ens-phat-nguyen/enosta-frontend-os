@@ -1,56 +1,62 @@
-# Development Principles
+# Development Principles — Cheatsheet
 
-> "Principles are the foundation upon which great software is built."
-
----
-
-## Overview
-
-This section contains **core development principles** that guide how we think, design, and write code. These are not language-specific or framework-specific — they are **universal mindsets** that apply across all technologies.
-
-Each principle follows a consistent structure:
-
-1. **Overview** - What is this principle?
-2. **Why It Matters** - Problems it solves
-3. **Core Concepts** - Key ideas and terminology
-4. **Workflow & Checklist** - How to apply it
-5. **Examples** - Good vs Bad code patterns
-6. **References** - Further reading
+> Principles are tools to help you think, not rules to follow blindly.
 
 ---
 
-## Principles
+## Quick Reference
 
-| #  | Principle                                                    | Summary                                |
-| -- | ------------------------------------------------------------ | -------------------------------------- |
-| 01 | [Interface-First Thinking](./01-interface-first-thinking.md) | Design contracts before implementation |
-| 02 | [YAGNI](./02-yagni.md)                                       | You Aren't Gonna Need It               |
-| 03 | [DRY](./03-dry.md)                                           | Don't Repeat Yourself                  |
-| 04 | [KISS](./04-kiss.md)                                         | Keep It Simple, Stupid                 |
-
----
-
-## Guides
-
-| Guide                                                    | Description                                        |
-| -------------------------------------------------------- | -------------------------------------------------- |
-| [Balancing Principles](./guides/balancing-principles.md) | How to navigate conflicts between DRY, YAGNI, KISS |
+| # | Principle | One-liner | Ask before coding |
+|---|-----------|-----------|-------------------|
+| 01 | [Interface-First](./01-interface-first.md) | Design contracts before implementation | "What are the inputs/outputs?" |
+| 02 | [YAGNI](./02-yagni.md) | Only build what's needed RIGHT NOW | "Is there a requirement for this?" |
+| 03 | [DRY](./03-dry.md) | Each knowledge exists in one place only | "Is this the same knowledge or just similar code?" |
+| 04 | [KISS](./04-kiss.md) | Choose the simplest correct solution | "Can a junior dev understand this in 5 minutes?" |
 
 ---
 
-## How to Use
+## When Principles Conflict
 
-### For Learning
+### DRY vs KISS
 
-Read each principle from top to bottom. The examples section provides concrete patterns you can apply immediately.
+> Prefer simple duplication over complex abstraction.
 
-### For Reference
+If your abstraction needs many parameters or conditionals to handle all cases, the duplication was better.
 
-Use the checklists before starting any new feature or refactoring work.
+### DRY vs YAGNI — Rule of Three
 
-### For Code Review
+> 1st time → Just write it. 2nd time → Note it, keep separate. 3rd time → Extract.
 
-Reference these principles when reviewing code to maintain consistency across the team.
+Two occurrences might be coincidence. Three confirm a pattern.
+
+### Priority Order
+
+When in doubt, follow this order:
+
+1. **Correctness** — Does it work?
+2. **Clarity** — Can others understand it? (KISS)
+3. **Simplicity** — Is it as simple as possible? (KISS + YAGNI)
+4. **No duplication** — Is knowledge consolidated? (DRY, only after 1-3 are satisfied)
+
+### Quick Decision Guide
+
+| Situation | Do this |
+|-----------|---------|
+| Same logic, 2 places, simple to extract | Wait (YAGNI) |
+| Same logic, 3+ places | Extract (DRY) |
+| Same code, different concepts | Keep separate (avoid Over-DRY) |
+| Extraction adds complexity | Keep duplication (KISS > DRY) |
+| "Might need this later" | Don't build it (YAGNI) |
+| Business rule repeated anywhere | Extract immediately (DRY) |
+
+### Context Matters
+
+| Context | Priority | Reason |
+|---------|----------|--------|
+| Startup / MVP | YAGNI > KISS > DRY | Speed matters, requirements will change |
+| Established product | KISS > DRY > YAGNI | Maintainability matters |
+| Public API / Library | DRY > KISS > YAGNI | Consistency is critical |
+| Team with junior devs | KISS > YAGNI > DRY | Readability is essential |
 
 ---
 
