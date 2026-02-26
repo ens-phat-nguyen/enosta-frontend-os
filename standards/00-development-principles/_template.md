@@ -40,8 +40,8 @@ Before starting work, verify:
 
 ## When NOT to Apply
 
-| Case | Why |
-|------|-----|
+| Case        | Why    |
+| ----------- | ------ |
 | Exception 1 | Reason |
 | Exception 2 | Reason |
 

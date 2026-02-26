@@ -38,18 +38,18 @@ Before extracting duplicate code, verify:
 ```typescript
 // SAME KNOWLEDGE (apply DRY) — both represent "10% tax calculation"
 // order-service.ts
-const tax = subtotal * 0.1
+const tax = subtotal * 0.1;
 // invoice-service.ts
-const tax = subtotal * 0.1
+const tax = subtotal * 0.1;
 // → Extract: calculateTax(subtotal)
 
 // SAME CODE but DIFFERENT KNOWLEDGE (keep separate)
 // These look similar but represent different concepts
 function formatUserName(user: User): string {
-  return `${user.firstName} ${user.lastName}`
+  return `${user.firstName} ${user.lastName}`;
 }
 function formatProductDisplay(product: Product): string {
-  return `${product.name} - $${product.price}`
+  return `${product.name} - $${product.price}`;
 }
 // → Keep separate. They will evolve differently.
 ```
@@ -63,26 +63,26 @@ function formatProductDisplay(product: Product): string {
 ```typescript
 // Bad: tax knowledge scattered across files
 function calculateOrderTotal(items: OrderItem[]) {
-  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0)
-  const tax = subtotal * 0.1  // duplicated!
-  return subtotal + tax
+  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const tax = subtotal * 0.1; // duplicated!
+  return subtotal + tax;
 }
 
 function generateInvoice(items: OrderItem[]) {
-  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0)
-  const tax = subtotal * 0.1  // duplicated!
-  return { subtotal, tax, total: subtotal + tax }
+  const subtotal = items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+  const tax = subtotal * 0.1; // duplicated!
+  return { subtotal, tax, total: subtotal + tax };
 }
 
 // Good: single source of truth
-const TAX_RATE = 0.1
+const TAX_RATE = 0.1;
 
 function calculateTax(amount: number): number {
-  return amount * TAX_RATE
+  return amount * TAX_RATE;
 }
 
 function calculateSubtotal(items: OrderItem[]): number {
-  return items.reduce((sum, i) => sum + i.price * i.quantity, 0)
+  return items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 }
 ```
 
@@ -90,19 +90,23 @@ function calculateSubtotal(items: OrderItem[]): number {
 
 ```typescript
 // Bad: merging different knowledge just because code looks similar
-function validateEntity(entity: any, type: 'user' | 'product') {
-  if (type === 'user') {
-    if (!entity.email) errors.push('Email required')
+function validateEntity(entity: any, type: "user" | "product") {
+  if (type === "user") {
+    if (!entity.email) errors.push("Email required");
     // ...user-specific rules
-  } else if (type === 'product') {
-    if (!entity.name) errors.push('Name required')
+  } else if (type === "product") {
+    if (!entity.name) errors.push("Name required");
     // ...product-specific rules
   }
 }
 
 // Good: separate functions for separate knowledge
-function validateUser(user: User): ValidationError[] { /* ... */ }
-function validateProduct(product: Product): ValidationError[] { /* ... */ }
+function validateUser(user: User): ValidationError[] {
+  /* ... */
+}
+function validateProduct(product: Product): ValidationError[] {
+  /* ... */
+}
 ```
 
 ---

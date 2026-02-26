@@ -44,18 +44,22 @@ Before adding code or features, ask:
 ```typescript
 // Bad: building for futures that may never come
 interface PaymentProcessor {
-  processPayment(payment: Payment): Promise<PaymentResult>
-  refundPayment(paymentId: string): Promise<RefundResult>      // not needed yet
-  partialRefund(paymentId: string, amount: number): Promise<RefundResult>  // not needed yet
-  schedulePayment(payment: Payment, date: Date): Promise<void>  // not needed yet
+  processPayment(payment: Payment): Promise<PaymentResult>;
+  refundPayment(paymentId: string): Promise<RefundResult>; // not needed yet
+  partialRefund(paymentId: string, amount: number): Promise<RefundResult>; // not needed yet
+  schedulePayment(payment: Payment, date: Date): Promise<void>; // not needed yet
 }
 
-class StripeProcessor implements PaymentProcessor { /* ... */ }
-class PayPalProcessor implements PaymentProcessor { /* ... */ }  // not needed yet
+class StripeProcessor implements PaymentProcessor {
+  /* ... */
+}
+class PayPalProcessor implements PaymentProcessor {
+  /* ... */
+} // not needed yet
 
 // Good: only what's needed now
 interface PaymentProcessor {
-  processPayment(payment: Payment): Promise<PaymentResult>
+  processPayment(payment: Payment): Promise<PaymentResult>;
 }
 
 class StripeProcessor implements PaymentProcessor {
@@ -74,17 +78,19 @@ class StripeProcessor implements PaymentProcessor {
 const config = {
   darkMode: {
     enabled: true,
-    variants: ['dark', 'dim', 'midnight'],  // not needed yet
-    scheduleEnabled: true,                   // not needed yet
+    variants: ["dark", "dim", "midnight"], // not needed yet
+    scheduleEnabled: true, // not needed yet
   },
-  notifications: { /* ... */ },              // not needed yet
-  plugins: [],                               // not needed yet
-}
+  notifications: {
+    /* ... */
+  }, // not needed yet
+  plugins: [], // not needed yet
+};
 
 // Good: what you need now
 const config = {
   darkMode: true,
-}
+};
 // Expand when you actually need more options
 ```
 
@@ -92,12 +98,12 @@ const config = {
 
 ## When NOT to Apply YAGNI
 
-| Case | Why |
-|------|-----|
-| **Security** | Adding security later is expensive and risky |
+| Case                  | Why                                                     |
+| --------------------- | ------------------------------------------------------- |
+| **Security**          | Adding security later is expensive and risky            |
 | **Core Architecture** | Database schema, API contracts are hard to change later |
-| **Public APIs** | Breaking changes hurt external users |
-| **Compliance/Legal** | GDPR, HIPAA must be designed from the start |
+| **Public APIs**       | Breaking changes hurt external users                    |
+| **Compliance/Legal**  | GDPR, HIPAA must be designed from the start             |
 
 ---
 

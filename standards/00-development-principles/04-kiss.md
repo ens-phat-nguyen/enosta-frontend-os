@@ -42,18 +42,24 @@ KISS is about **simple**, not necessarily easy. Sometimes simple solutions requi
 
 ```typescript
 // Bad: 5 classes for getting a full name
-interface DataProcessor<T, R> { process(data: T): R }
-interface DataValidator<T> { validate(data: T): boolean }
-interface DataTransformer<T, R> { transform(data: T): R }
+interface DataProcessor<T, R> {
+  process(data: T): R;
+}
+interface DataValidator<T> {
+  validate(data: T): boolean;
+}
+interface DataTransformer<T, R> {
+  transform(data: T): R;
+}
 
 class UserNameProcessor implements DataProcessor<User, string> {
   constructor(
     private validator: DataValidator<User>,
-    private transformer: DataTransformer<User, string>
+    private transformer: DataTransformer<User, string>,
   ) {}
   process(user: User): string {
-    if (!this.validator.validate(user)) throw new Error('Invalid user')
-    return this.transformer.transform(user)
+    if (!this.validator.validate(user)) throw new Error("Invalid user");
+    return this.transformer.transform(user);
   }
 }
 // + UserValidator class + UserNameTransformer class...
@@ -61,9 +67,9 @@ class UserNameProcessor implements DataProcessor<User, string> {
 // Good: one function
 function getFullName(user: User): string {
   if (!user.firstName || !user.lastName) {
-    throw new Error('Invalid user: name is required')
+    throw new Error("Invalid user: name is required");
   }
-  return `${user.firstName} ${user.lastName}`
+  return `${user.firstName} ${user.lastName}`;
 }
 ```
 
@@ -71,14 +77,17 @@ function getFullName(user: User): string {
 
 ```typescript
 // Bad: clever one-liner
-const result = data.reduce((a, x) => (x.active && x.score > 50 ? [...a, { ...x, rank: a.length + 1 }] : a), [])
+const result = data.reduce(
+  (a, x) => (x.active && x.score > 50 ? [...a, { ...x, rank: a.length + 1 }] : a),
+  [],
+);
 
 // Good: clear steps
-const activeHighScorers = data.filter(item => item.active && item.score > 50)
+const activeHighScorers = data.filter((item) => item.active && item.score > 50);
 const rankedResults = activeHighScorers.map((item, index) => ({
   ...item,
   rank: index + 1,
-}))
+}));
 ```
 
 ### Config Over-Engineering
@@ -102,12 +111,12 @@ const buttonConfig = {
 
 ## Common Anti-Patterns
 
-| Anti-Pattern | Solution |
-|-------------|----------|
-| Premature Abstraction | Wait for the third occurrence |
-| Framework Fever | Use vanilla solutions when possible |
-| Config Overload | Use sensible defaults |
-| Inheritance Abuse | Prefer composition |
+| Anti-Pattern             | Solution                             |
+| ------------------------ | ------------------------------------ |
+| Premature Abstraction    | Wait for the third occurrence        |
+| Framework Fever          | Use vanilla solutions when possible  |
+| Config Overload          | Use sensible defaults                |
+| Inheritance Abuse        | Prefer composition                   |
 | Design Pattern Obsession | Use patterns only when they simplify |
 
 ---

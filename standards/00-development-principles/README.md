@@ -6,12 +6,12 @@
 
 ## Quick Reference
 
-| # | Principle | One-liner | Ask before coding |
-|---|-----------|-----------|-------------------|
-| 01 | [Interface-First](./01-interface-first.md) | Design contracts before implementation | "What are the inputs/outputs?" |
-| 02 | [YAGNI](./02-yagni.md) | Only build what's needed RIGHT NOW | "Is there a requirement for this?" |
-| 03 | [DRY](./03-dry.md) | Each knowledge exists in one place only | "Is this the same knowledge or just similar code?" |
-| 04 | [KISS](./04-kiss.md) | Choose the simplest correct solution | "Can a junior dev understand this in 5 minutes?" |
+| #   | Principle                                  | One-liner                               | Ask before coding                                  |
+| --- | ------------------------------------------ | --------------------------------------- | -------------------------------------------------- |
+| 01  | [Interface-First](./01-interface-first.md) | Design contracts before implementation  | "What are the inputs/outputs?"                     |
+| 02  | [YAGNI](./02-yagni.md)                     | Only build what's needed RIGHT NOW      | "Is there a requirement for this?"                 |
+| 03  | [DRY](./03-dry.md)                         | Each knowledge exists in one place only | "Is this the same knowledge or just similar code?" |
+| 04  | [KISS](./04-kiss.md)                       | Choose the simplest correct solution    | "Can a junior dev understand this in 5 minutes?"   |
 
 ---
 
@@ -40,23 +40,23 @@ When in doubt, follow this order:
 
 ### Quick Decision Guide
 
-| Situation | Do this |
-|-----------|---------|
-| Same logic, 2 places, simple to extract | Wait (YAGNI) |
-| Same logic, 3+ places | Extract (DRY) |
-| Same code, different concepts | Keep separate (avoid Over-DRY) |
-| Extraction adds complexity | Keep duplication (KISS > DRY) |
-| "Might need this later" | Don't build it (YAGNI) |
-| Business rule repeated anywhere | Extract immediately (DRY) |
+| Situation                               | Do this                        |
+| --------------------------------------- | ------------------------------ |
+| Same logic, 2 places, simple to extract | Wait (YAGNI)                   |
+| Same logic, 3+ places                   | Extract (DRY)                  |
+| Same code, different concepts           | Keep separate (avoid Over-DRY) |
+| Extraction adds complexity              | Keep duplication (KISS > DRY)  |
+| "Might need this later"                 | Don't build it (YAGNI)         |
+| Business rule repeated anywhere         | Extract immediately (DRY)      |
 
 ### Context Matters
 
-| Context | Priority | Reason |
-|---------|----------|--------|
-| Startup / MVP | YAGNI > KISS > DRY | Speed matters, requirements will change |
-| Established product | KISS > DRY > YAGNI | Maintainability matters |
-| Public API / Library | DRY > KISS > YAGNI | Consistency is critical |
-| Team with junior devs | KISS > YAGNI > DRY | Readability is essential |
+| Context               | Priority           | Reason                                  |
+| --------------------- | ------------------ | --------------------------------------- |
+| Startup / MVP         | YAGNI > KISS > DRY | Speed matters, requirements will change |
+| Established product   | KISS > DRY > YAGNI | Maintainability matters                 |
+| Public API / Library  | DRY > KISS > YAGNI | Consistency is critical                 |
+| Team with junior devs | KISS > YAGNI > DRY | Readability is essential                |
 
 ---
 

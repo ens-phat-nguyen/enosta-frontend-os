@@ -43,23 +43,23 @@ Before writing implementation, verify:
 // Bad: no contract, unclear input/output
 function processData(data) {
   // ... 100 lines ...
-  return something
+  return something;
 }
 
 // Good: define contract first, implement later
 type ProcessDataInput = {
-  users: User[]
+  users: User[];
   filters: {
-    status: 'active' | 'inactive' | 'all'
-    minAge?: number
-  }
-}
+    status: "active" | "inactive" | "all";
+    minAge?: number;
+  };
+};
 
 type ProcessDataOutput = {
-  filteredUsers: User[]
-  totalCount: number
-  appliedFilters: string[]
-}
+  filteredUsers: User[];
+  totalCount: number;
+  appliedFilters: string[];
+};
 
 function processUserData(input: ProcessDataInput): ProcessDataOutput {
   // NOW implement
@@ -100,18 +100,18 @@ function useSearch(data, fields) {
 
 // Good: interface defined first
 type UseSearchOptions<T> = {
-  data: T[]
-  searchFields: (keyof T)[]
-  debounceMs?: number // default: 300
-}
+  data: T[];
+  searchFields: (keyof T)[];
+  debounceMs?: number; // default: 300
+};
 
 type UseSearchReturn<T> = {
-  query: string
-  setQuery: (query: string) => void
-  results: T[]
-  isSearching: boolean
-  clearSearch: () => void
-}
+  query: string;
+  setQuery: (query: string) => void;
+  results: T[];
+  isSearching: boolean;
+  clearSearch: () => void;
+};
 
 function useSearch<T>(options: UseSearchOptions<T>): UseSearchReturn<T> {
   // implement
