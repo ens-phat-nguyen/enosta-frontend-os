@@ -1,4 +1,4 @@
-# f4stack
+# Standards and Best Practices
 
 ## Introduction
 

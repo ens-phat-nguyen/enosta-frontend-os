@@ -49,6 +49,69 @@ cd playbooks/project-setup
 
 ---
 
+### 🧩 [Build a Feature Component](./component-design/build-feature-component.md)
+
+Build a well-structured feature component from scratch — folder setup, hook extraction, public API, tests, and wiring.
+
+**When to use:**
+
+- Adding a new component to a feature module
+- Unsure how to structure or place a component
+- Onboarding to the component design conventions
+
+**What you'll get:**
+
+- Correct folder structure with colocated files
+- Logic separated into a hook, rendering in the component
+- Clean `index.ts` public API
+- A passing test file
+
+**Read more:** [Build a Feature Component](./component-design/build-feature-component.md)
+
+---
+
+### 🛠️ [Refactor a Growing Component](./component-design/refactor-growing-component.md)
+
+Diagnose what’s wrong with a hard-to-work-with component and fix it step by step — without breaking anything.
+
+**When to use:**
+
+- A component is getting harder to change or test
+- There are too many boolean props or variants
+- Logic and rendering are tangled together
+- You need to add a new variant but dread touching the file
+
+**What you’ll get:**
+
+- A clear diagnosis before touching anything
+- Logic extracted into a hook
+- Rendering split into the right sub-components
+- Props reduced through composition
+
+**Read more:** [Refactor a Growing Component](./component-design/refactor-growing-component.md)
+
+---
+
+### 📦 [Extract a Shared Component](./component-design/extract-shared-component.md)
+
+Move a component from a feature module into `modules/common/` so multiple features can use it.
+
+**When to use:**
+
+- The same component is needed in 3+ distinct places
+- You’re about to copy-paste a component into a second feature module
+- A shared abstraction has become clear across multiple call sites
+
+**What you’ll get:**
+
+- Component correctly placed in `modules/common/`
+- Clean shared props interface derived from real call sites
+- All callers updated, original deleted
+
+**Read more:** [Extract a Shared Component](./component-design/extract-shared-component.md)
+
+---
+
 ## Coming Soon
 
 More playbooks in development:
@@ -61,6 +124,14 @@ More playbooks in development:
 - **Accessibility Audit** - Ensure WCAG compliance
 - **Refactoring** - Safely refactor legacy code
 - **Debugging** - Debug common issues systematically
+
+---
+
+## Related Standards
+
+Looking for conceptual guides rather than step-by-step playbooks? See:
+
+- [Component Patterns](../standards/09-component-patterns/README.md) — patterns, decision trees, file structure, and composition
 
 ---
 
